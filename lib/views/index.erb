@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Issues for <%=issues[0][:assignee]%></title>
+	</head>
+	<body>
+		<% issues.each do |issue| %>
+			<ul>
+				<li>Issue #: <%=issue[:number]%></li>
+				<li>Title: <%=issue[:title]%></li>
+				<li>Assignee: <%=issue[:assignee]%></li>
+				<% if issue[:state] == "closed" %>
+					<li>
+						<form action="/issue/reopen/<%=issue[:number]%>" method="post">
+            	<input type="submit" value="Reopen it.">
+            </form>
+					</li>
+				<% elsif issue[:state] == "open" %>
+				  <li>
+					  <form action="/issue/close/<%=issue[:number]%>" method="post">
+            	<input type="submit" value="Close it.">
+            </form>
+					</li>
+				<% else %>
+				  <li>This issue is not open or closed</li>
+				<% end %>
+			</ul>
+		<% end %>
+		<p>with love</p>
+	</body>
+</html>
