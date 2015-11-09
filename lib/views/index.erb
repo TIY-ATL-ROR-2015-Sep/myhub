@@ -12,13 +12,13 @@
 				<% if issue[:state] == "closed" %>
 					<li>
 						<form action="/issue/reopen/<%=issue[:number]%>" method="post">
-            	<input type="submit" value="Reopen it.">
+            	<input type="submit" value="**OPEN**">
             </form>
 					</li>
 				<% elsif issue[:state] == "open" %>
 				  <li>
 					  <form action="/issue/close/<%=issue[:number]%>" method="post">
-            	<input type="submit" value="Close it.">
+            	<input type="submit" value="--close--">
             </form>
 					</li>
 				<% else %>

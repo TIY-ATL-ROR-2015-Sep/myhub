@@ -21,14 +21,13 @@ module Myhub
     post "/issue/reopen/:number" do
       api = Github.new
       api.reopen_issue(params["number"].to_i)
-      "Reopened it."
+      redirect to('/')
     end
 
     post "/issue/close/:number" do
       api = Github.new
-      binding.pry
       api.close_issue(params["number"].to_i)
-      "Closed it."
+      redirect to('/')
     end
 
     #binding.pry
