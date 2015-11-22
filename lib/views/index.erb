@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyHub - Issues Explorer</title>
+  <link rel="stylesheet" href="main.css"
+<body>
+  <h2>All the issues!</h2>
+  <ul>
+    <% issues.each do |issue|%>
+        <% if issue[:state] == "closed"
+             action = "reopen"
+           else
+             action = "close"
+           end
+        %>
+        <form action="/issue/<%= action %>/<%= issue[:id] %>" method="post">
+        <li>
+          <p>
+            Issue #<%= issue[:id] %>: <a href="<%= issue[:url] %>"><%= issue[:title] %></a>
+          </p>
+          <p>
+            Status: <%= issue[:state].capitalize %> <input type="Submit" class="<%= action %>" value="<%= action.capitalize %>">
+          </p>
+        </li>
+        </form>
+    <% end %>
+  </ul>
+
+</body>
+</head>
+</html>

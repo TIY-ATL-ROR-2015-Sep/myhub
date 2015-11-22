@@ -12,20 +12,20 @@ module Myhub
     # Your code here ...
     get "/" do
       api = Github.new
-      # get stuff from github
-      erb :index, locals: { issues: stuff }
+      data = api.get_issues("TIY-ATL-ROR-2015-Sep","assignments", { assignee: "violetaria", state: "all" })
+      erb :index, locals: { issues: data }
     end
 
     post "/issue/reopen/:id" do
       api = Github.new
-      api.reopen_issue(params["id"].to_i)
-      "Cool cool cool"
+      api.reopen_issue("TIY-ATL-ROR-2015-Sep","assignments",params["id"].to_i)
+      redirect back
     end
 
     post "/issue/close/:id" do
       api = Github.new
-      api.close_issue(params["id"].to_i)
-      "Cool cool cool"
+      api.close_issue("TIY-ATL-ROR-2015-Sep","assignments",params["id"].to_i)
+      redirect back
     end
 
     run! if app_file == $0
